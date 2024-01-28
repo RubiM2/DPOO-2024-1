@@ -17,7 +17,7 @@ import uniandes.dpoo.gasolinera.utils.Sorteo;
 
 /**
  * Esta clase tiene la información de una Gasolinera incluyendo los tipos de gasolina, los empleados y los surtidores
- */
+ */	
 public class Gasolinera
 {
     // ************************************************************************

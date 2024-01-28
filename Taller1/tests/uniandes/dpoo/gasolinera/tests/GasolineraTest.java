@@ -277,7 +277,7 @@ public class GasolineraTest
     {
         int precioDeseado = 30000;
         int precioPagado = g2.venderGasolinaPorPrecio( CORRIENTE, precioDeseado, 1 );
-
+        
         assertEquals( precioDeseado, precioPagado, "El precio pagado no es correcto" );
 
         Empleado empleadoSurtidor = g2.getSurtidor( 1 ).getEmpleadoAsignado( );
