@@ -4,7 +4,7 @@ public class Ejecutable {
 	public static void main(String[] args) {
 		SandboxConjuntos conjuntos = new SandboxConjuntos();SandboxListas listas = new SandboxListas();SandboxMapas mapas = new SandboxMapas();
 		SandboxArreglos arreglo = new SandboxArreglos();
-		double[] valores = {3.4,2.2,5.8,9.2,10.3};
+		int[] valores = {5,4,3,2,2};
 		Object[] objetos = {conjuntos, listas, mapas };
 		arreglo.agregarCadena("DoS");
 		arreglo.agregarCadena("dos");
@@ -14,14 +14,16 @@ public class Ejecutable {
 		arreglo.agregarCadena("Tos");
 		
 		arreglo.agregarEntero(1);
-		arreglo.agregarEntero(1);
 		arreglo.agregarEntero(2);
-		arreglo.agregarEntero(2);
-		arreglo.agregarEntero(1);
+		arreglo.agregarEntero(3);
+		arreglo.agregarEntero(4);
+		arreglo.agregarEntero(5);
 		
+		arreglo.generarEnteros(10, 20, 90);
 		imprimirPantalla(arreglo);
-		System.out.println(arreglo.contarEnterosRepetidos());
+		
 		}
+		
 	
 	
 	public static void imprimirPantalla( SandboxArreglos arreglo) {
@@ -47,6 +49,11 @@ public class Ejecutable {
 		System.out.println("");
 	}
 }
+	 public static int generarEnteros( int cantidad, int minimo, int maximo )
+	    {
+	    	int random = minimo + (int)(Math.random()*(maximo -minimo));
+	    	
+	    	return random;
+	    }
 }
-
 

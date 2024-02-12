@@ -1,5 +1,6 @@
 package uniandes.dpoo.estructuras.logica;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -316,7 +317,7 @@ public class SandboxArreglos
     {
     	HashMap<Integer, Integer> ret = new HashMap<Integer, Integer>();
     	for(int i = 0; i< arregloEnteros.length;i++) {
-    		 if(ret.containsKey(arregloEnteros[i])) {
+    		 if(! ret.containsKey(arregloEnteros[i])) {
     			 ret.put(arregloEnteros[i], 1);
     		 }
     		 else {
@@ -333,15 +334,16 @@ public class SandboxArreglos
     public int contarEnterosRepetidos( )
     {
     	int rep = 0;
-    	Object[] histo = calcularHistograma().values().toArray();
+    	HashMap<Integer, Integer> histo = calcularHistograma();
     	
-    	for (int i = 0; i< histo.length;i++) {
-    		if((int)histo[i]>1) {
+    	for (int i = 0; i< arregloEnteros.length;i++) {
+    		if(histo.get(arregloEnteros[i]) > 1) {
     			rep+=1;
+    			histo.put(arregloEnteros[i], 0);
+    			}
     		}
+    	return rep;
     	}
-        return rep;
-    }
 
     /**
      * Compara el arreglo de enteros con otro arreglo de enteros y verifica si son iguales, es decir que contienen los mismos elementos exactamente en el mismo orden.
@@ -350,6 +352,7 @@ public class SandboxArreglos
      */
     public boolean compararArregloEnteros( int[] otroArreglo )
     {
+        if (Arrays.equals(arregloEnteros, otroArreglo)) return true;
         return false;
     }
 
@@ -360,6 +363,10 @@ public class SandboxArreglos
      */
     public boolean mismosEnteros( int[] otroArreglo )
     {
+    	int[] comp1 =arregloEnteros.clone();
+    	Arrays.sort(otroArreglo);
+    	Arrays.sort(comp1);
+    	if (Arrays.equals(comp1, otroArreglo)) return true;
         return false;
     }
 
@@ -375,7 +382,11 @@ public class SandboxArreglos
      */
     public void generarEnteros( int cantidad, int minimo, int maximo )
     {
-
+    	int[] nuevo = new int[cantidad]; 
+    	for(int i = 0; i < nuevo.length;i++) {
+    		int random = minimo + (int)(Math.random()*(maximo-minimo));
+    		nuevo[i] = random;
+    	}
+    	arregloEnteros = nuevo;
     }
-
 }
