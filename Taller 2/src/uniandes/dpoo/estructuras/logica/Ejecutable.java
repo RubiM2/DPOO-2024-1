@@ -1,63 +1,33 @@
 package uniandes.dpoo.estructuras.logica;
 
+import java.util.Collection;
+import java.util.Iterator;
+
+
 public class Ejecutable {
 	public static void main(String[] args) {
-		SandboxConjuntos conjuntos = new SandboxConjuntos();SandboxListas listas = new SandboxListas();SandboxMapas mapas = new SandboxMapas();
-		SandboxArreglos arreglo = new SandboxArreglos();
-		int[] valores = {5,4,3,2,2};
-		Object[] objetos = {conjuntos, listas, mapas };
-		arreglo.agregarCadena("DoS");
-		arreglo.agregarCadena("dos");
-		arreglo.agregarCadena("doz");
-		arreglo.agregarCadena("dos");
-		arreglo.agregarCadena("Mos");
-		arreglo.agregarCadena("Tos");
+		SandboxConjuntos conjunto = new SandboxConjuntos();
+		conjunto.agregarCadena("All");
+		conjunto.agregarCadena("America");
+		conjunto.agregarCadena("Tomas");
 		
-		arreglo.agregarEntero(1);
-		arreglo.agregarEntero(2);
-		arreglo.agregarEntero(3);
-		arreglo.agregarEntero(9);
-		arreglo.agregarEntero(9);
-		arreglo.agregarEntero(1);
-		arreglo.agregarEntero(2);
-		arreglo.agregarEntero(3);
-		arreglo.agregarEntero(9);
-		arreglo.agregarEntero(9);
-		imprimirPantalla(arreglo);
-		int[] res = arreglo.buscarEntero(9);
-		imprimirEnteros(res);
+		String[] otroArreglo = {"All","America"};
+		System.out.println(conjunto.compararElementos(otroArreglo));
 		}
 		
 	
 	
-	public static void imprimirPantalla( SandboxArreglos arreglo) {
-		if(true) {
-			for(int i=0; i<arreglo.getCopiaEnteros().length;i++) {
-				System.out.print(String.valueOf(arreglo.getCopiaEnteros()[i]) + " ");
-			}
-		System.out.println("");
+	public static <V,T extends Collection<V>> void imprimirPantalla(Collection<V> a) {
+		Iterator<V> iter = a.iterator();
+		while(iter.hasNext()) {
+			System.out.print(iter.next().toString()+ " ");	
 		}
-		if(false) {
-			for(int i=0; i<arreglo.getCopiaCadenas().length;i++) {
-				System.out.print(String.valueOf(arreglo.getCopiaCadenas()[i]) + " ");
-			}
 		System.out.println("");
-		}
+		
+		
+		
+		
+		
 	}
-	
-	public static void imprimirEnteros(int[] arreglo) {
-		if(true) {
-			for(int i=0; i<arreglo.length;i++) {
-				System.out.print(String.valueOf(arreglo[i]) + " ");
-			}
-		System.out.println("");
-	}
-}
-	 public static int generarEnteros( int cantidad, int minimo, int maximo )
-	    {
-	    	int random = minimo + (int)(Math.random()*(maximo -minimo));
-	    	
-	    	return random;
-	    }
 }
 
