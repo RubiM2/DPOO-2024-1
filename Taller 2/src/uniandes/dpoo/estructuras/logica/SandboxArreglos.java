@@ -186,7 +186,8 @@ public class SandboxArreglos
      */
     public void reiniciarArregloEnteros( double[] valores )
     {
-    	for(int i = 0; i< arregloEnteros.length;i++){
+    	arregloEnteros = Arrays.copyOf(arregloEnteros,valores.length);
+    	for(int i = 0; i< valores.length;i++){
     		arregloEnteros[i] = (int)valores[i]; 
     	}
     }
@@ -199,10 +200,10 @@ public class SandboxArreglos
      */
     public void reiniciarArregloCadenas( Object[] objetos ) 
     {
-    	for(int i = 0; i< arregloCadenas.length;i++){
-    		arregloCadenas[i] = objetos[i].toString(); 
+    	arregloCadenas = Arrays.copyOf(arregloCadenas,objetos.length);
+    	for(int i = 0; i< objetos.length;i++){
+    		arregloCadenas[i] = objetos[i].toString();
     	}
-
     }
 
     /**
@@ -296,7 +297,8 @@ public class SandboxArreglos
      */
     public int[] calcularRangoEnteros( )
     {
-    	int[] ret = {arregloEnteros[0],arregloEnteros[0]}; 
+    	if(arregloEnteros.length == 0) return new int[]{};
+    	int[] ret = {arregloEnteros[0],arregloEnteros[0]};
     	for(int i = 0; i< arregloEnteros.length;i++){
     		if(arregloEnteros[i] < ret[0]) {
     			ret[0] = arregloEnteros[i];
@@ -352,7 +354,7 @@ public class SandboxArreglos
      */
     public boolean compararArregloEnteros( int[] otroArreglo )
     {
-        if (Arrays.equals(arregloEnteros, otroArreglo)) return true;
+    	if (Arrays.equals(arregloEnteros, otroArreglo)) return true;
         return false;
     }
 
@@ -364,9 +366,10 @@ public class SandboxArreglos
     public boolean mismosEnteros( int[] otroArreglo )
     {
     	int[] comp1 =arregloEnteros.clone();
-    	Arrays.sort(otroArreglo);
+    	int[] comp2 =otroArreglo.clone();
     	Arrays.sort(comp1);
-    	if (Arrays.equals(comp1, otroArreglo)) return true;
+    	Arrays.sort(comp2);
+    	if (Arrays.equals(comp1, comp2)) return true;
         return false;
     }
 
@@ -384,7 +387,7 @@ public class SandboxArreglos
     {
     	int[] nuevo = new int[cantidad]; 
     	for(int i = 0; i < nuevo.length;i++) {
-    		int random = minimo + (int)(Math.random()*(maximo-minimo));
+    		int random = minimo + (int)(Math.random()*(maximo-minimo+1));
     		nuevo[i] = random;
     	}
     	arregloEnteros = nuevo;

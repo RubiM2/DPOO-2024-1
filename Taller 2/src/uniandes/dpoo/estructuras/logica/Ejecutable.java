@@ -16,12 +16,16 @@ public class Ejecutable {
 		arreglo.agregarEntero(1);
 		arreglo.agregarEntero(2);
 		arreglo.agregarEntero(3);
-		arreglo.agregarEntero(4);
-		arreglo.agregarEntero(5);
-		
-		arreglo.generarEnteros(10, 20, 90);
+		arreglo.agregarEntero(9);
+		arreglo.agregarEntero(9);
+		arreglo.agregarEntero(1);
+		arreglo.agregarEntero(2);
+		arreglo.agregarEntero(3);
+		arreglo.agregarEntero(9);
+		arreglo.agregarEntero(9);
 		imprimirPantalla(arreglo);
-		
+		int[] res = arreglo.buscarEntero(9);
+		imprimirEnteros(res);
 		}
 		
 	
