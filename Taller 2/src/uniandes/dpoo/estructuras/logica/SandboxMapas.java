@@ -26,7 +26,7 @@ public class SandboxMapas
      * 
      * Las llaves corresponden a invertir la cadena que aparece asociada a cada llave.
      */
-    public Map<String, String> mapaCadenas;
+    private Map<String, String> mapaCadenas;
 
     /**
      * Crea una nueva instancia de la clase con las dos listas inicializadas pero vacías
