@@ -1,5 +1,6 @@
 package uniandes.dpoo.estructuras.logica;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,7 @@ public class SandboxMapas
      * 
      * Las llaves corresponden a invertir la cadena que aparece asociada a cada llave.
      */
-    private Map<String, String> mapaCadenas;
+    public Map<String, String> mapaCadenas;
 
     /**
      * Crea una nueva instancia de la clase con las dos listas inicializadas pero vacías
@@ -41,8 +42,23 @@ public class SandboxMapas
      */
     public List<String> getValoresComoLista( )
     {
-        return null;
+    	List<String> listaCadenas = new ArrayList<String>();
+    	for(Map.Entry<String,String> a: mapaCadenas.entrySet()) {
+    		listaCadenas.add(a.getValue());
+    		for(int i = 0;i<listaCadenas.size();i++) {
+        		int index = i;
+        		while(index>0 && listaCadenas.get(index).compareTo(listaCadenas.get(index-1))<=0) {
+        			String ant = listaCadenas.get(index-1);
+        			listaCadenas.set(index-1, listaCadenas.get(index));
+        			listaCadenas.set(index, ant);
+        			index--;
+        		}
+    	}
+       
     }
+    return listaCadenas;
+    }
+    
 
     /**
      * Retorna una lista con las llaves del mapa ordenadas lexicográficamente de mayor a menor
@@ -50,7 +66,21 @@ public class SandboxMapas
      */
     public List<String> getLlavesComoListaInvertida( )
     {
-        return null;
+    	List<String> listaCadenas = new ArrayList<String>();
+    	for(Map.Entry<String,String> a: mapaCadenas.entrySet()) {
+    		listaCadenas.add(a.getKey());
+    		for(int i = 0;i<listaCadenas.size();i++) {
+        		int index = i;
+        		while(index>0 && listaCadenas.get(index).compareTo(listaCadenas.get(index-1))>=0) {
+        			String ant = listaCadenas.get(index-1);
+        			listaCadenas.set(index-1, listaCadenas.get(index));
+        			listaCadenas.set(index, ant);
+        			index--;
+        		}
+    	}
+       
+    }
+    return listaCadenas;
     }
 
     /**
@@ -61,7 +91,10 @@ public class SandboxMapas
      */
     public String getPrimera( )
     {
-        return null;
+    	String result = null;
+    	List<String> llaves = getLlavesComoListaInvertida();
+    	if(!mapaCadenas.isEmpty()) result = llaves.getLast();
+        return result;
     }
 
     /**
@@ -72,7 +105,10 @@ public class SandboxMapas
      */
     public String getUltima( )
     {
-        return null;
+    	String result = null;
+    	List<String> llaves = getValoresComoLista();
+    	if(!mapaCadenas.isEmpty()) result = llaves.getLast();
+        return result;
     }
 
     /**
@@ -83,7 +119,12 @@ public class SandboxMapas
      */
     public Collection<String> getLlaves( )
     {
-        return null;
+    	Collection<String> cadenas = new ArrayList<String>();
+    	for(Map.Entry<String,String> a: mapaCadenas.entrySet()) {
+    		cadenas.add(a.getKey().toUpperCase());
+        }
+     
+    return cadenas;
     }
 
     /**
@@ -92,7 +133,7 @@ public class SandboxMapas
      */
     public int getCantidadCadenasDiferentes( )
     {
-        return -1;
+        return mapaCadenas.size();
     }
 
     /**
@@ -104,7 +145,11 @@ public class SandboxMapas
      */
     public void agregarCadena( String cadena )
     {
-
+    	String cadenaR = "";
+    	for(int i = 0; i<cadena.length();i++) {
+    		cadenaR = cadena.charAt(i) + cadenaR;
+    	}
+    	mapaCadenas.put(cadenaR, cadena);
     }
 
     /**
@@ -113,6 +158,7 @@ public class SandboxMapas
      */
     public void eliminarCadenaConLLave( String llave )
     {
+    	mapaCadenas.remove(llave);
 
     }
 
@@ -122,7 +168,11 @@ public class SandboxMapas
      */
     public void eliminarCadenaConValor( String valor )
     {
-
+    	String cadenaR = ""; 
+    	for(int i = 0; i<valor.length();i++) {
+    		cadenaR = valor.charAt(i) + cadenaR;
+    	}
+    	mapaCadenas.remove(cadenaR);
     }
 
     /**
@@ -133,6 +183,10 @@ public class SandboxMapas
      */
     public void reiniciarMapaCadenas( List<Object> objetos )
     {
+    	mapaCadenas.clear();
+    	for(Object a: objetos) {
+    		agregarCadena(a.toString());
+    	}
 
     }
 
@@ -141,7 +195,13 @@ public class SandboxMapas
      */
     public void volverMayusculas( )
     {
-
+    	Map<String,String> copia = new HashMap<String,String>(mapaCadenas);
+    	String valor = "";
+    	for(Map.Entry<String,String> a: copia.entrySet()) {
+    		valor = a.getValue();
+    		mapaCadenas.remove(a.getKey());
+    		mapaCadenas.put(a.getKey().toUpperCase(), valor);
+        }
     }
 
     /**
@@ -151,7 +211,20 @@ public class SandboxMapas
      */
     public boolean compararValores( String[] otroArreglo )
     {
-        return false;
+    	int j = 0;
+    	boolean cent = true;
+    	while(cent && j<otroArreglo.length) 
+    	{
+    		String valor = otroArreglo[j];
+    		String cadenaR = "";
+        	for(int i = 0; i<valor.length();i++) {
+        		cadenaR = valor.charAt(i) + cadenaR;
+        	}
+        	if(!mapaCadenas.containsKey(cadenaR)) cent = false;
+    		j++;
+    	}
+    	
+        return cent;
     }
 
 }

@@ -3,18 +3,21 @@ package uniandes.dpoo.estructuras.logica;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 
 public class Ejecutable {
 	public static void main(String[] args) {
-		SandboxListas listas = new SandboxListas();
-		List<Integer> ent = listas.getCopiaEnteros();
-		listas.agregarEntero(1);
-		listas.agregarEntero(2);
-		listas.agregarEntero(3);
-		listas.agregarEntero(4);
-		Ilista(listas.getCopiaEnteros());
-		Ilista(ent);
+		SandboxMapas mapa = new SandboxMapas();
+		
+		mapa.agregarCadena("e");
+		mapa.agregarCadena("c");
+		mapa.agregarCadena("b");
+		mapa.agregarCadena("d");
+		mapa.agregarCadena("f");
+		mapa.agregarCadena("a");
+		mapa.agregarCadena("e");
+		Imap(mapa.mapaCadenas);
 	}
 		
 	
@@ -33,5 +36,13 @@ public class Ejecutable {
     	}
 		System.out.println("");
 	}
+	public static <V,T> void Imap(Map<V,T> mapa) {
+		for(Map.Entry<V, T> pareja: mapa.entrySet()) {
+			System.out.println(pareja.getKey().toString() + ":" + pareja.getValue() + " ");
+			
+		}
+	}
 }
+
+
 
