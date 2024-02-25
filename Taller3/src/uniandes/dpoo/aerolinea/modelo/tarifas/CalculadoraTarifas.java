@@ -6,8 +6,6 @@ import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 
 public abstract class CalculadoraTarifas {
 	public final double IMPUESTO = 0.28;
-	protected Cliente cliente;
-	protected Vuelo vuelo;
 	
 	public int calcularTarifa(Vuelo vuelo, Cliente cliente) {
 		//TODO

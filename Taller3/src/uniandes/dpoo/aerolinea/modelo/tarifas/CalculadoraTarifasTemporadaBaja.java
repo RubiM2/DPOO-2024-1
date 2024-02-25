@@ -10,13 +10,13 @@ public class CalculadoraTarifasTemporadaBaja extends CalculadoraTarifas{
 	protected final double DESCUENTO_MEDIANAS = 0.1;
 	protected final double DESCUENTO_GRANDES = 0.2;
 	@Override
-	protected int calcularCostoBase(Vuelo vuelo, Cliente cliente) {
+	public int calcularCostoBase(Vuelo vuelo, Cliente cliente) {
 		// TODO 
 		return 0;
 	}
 
 	@Override
-	protected double calcularPorcentajeDescuento(Cliente cliente) {
+	public double calcularPorcentajeDescuento(Cliente cliente) {
 		// TODO
 		return 0;
 	}
