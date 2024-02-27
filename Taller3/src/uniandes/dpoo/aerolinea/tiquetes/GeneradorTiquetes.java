@@ -60,4 +60,5 @@ public class GeneradorTiquetes
         // TODO implementar
         return false;
     }
+    //Quiero editar el codigo aaaaaaaaaaaaaa
 }
