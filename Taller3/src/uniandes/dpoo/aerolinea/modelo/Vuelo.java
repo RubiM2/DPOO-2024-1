@@ -43,8 +43,12 @@ public class Vuelo {
 
 	@Override
 	public boolean equals(Object obj) {
-		//TODO 
-		return true;
+		boolean ig = obj.getClass() == this.getClass();
+		if(ig) { 
+			Vuelo comp = ((Vuelo) obj);
+			ig = this.getRuta().getCodigoRuta() == comp.getRuta().getCodigoRuta();
+		}
+		return ig;
 		
 	}
 	
